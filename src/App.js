@@ -1,7 +1,11 @@
-import { useState } from 'react';
-import swal from 'sweetalert';
-import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
-import './App.css';
+import { useState } from 'react'
+import swal from 'sweetalert'
+import './App.css'
+import CheckBoxIcon from '@material-ui/icons/CheckBox'
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank'
+import DeleteIcon from '@material-ui/icons/Delete'
+import EditIcon from '@material-ui/icons/Edit';
+
 
 function App() {
   const [text, setText] = useState('')
@@ -61,41 +65,57 @@ function App() {
 
   return (
     <div className="App">
-      <div className="mainContainer">
+      <div className="main-container">
         <div className="title">Todo List</div>
         <div className="form">
-          <input
-            placeholder="Enter task"
+          <input type="text" placeholder="Enter todo here"
             onChange = { e => setText(e.target.value)}
             value={text}/>
-            {!editMode ? 
-            <button onClick= { addItem } >Add</button> :
-            <button onClick= { updateItem }>Update</button>
-            }        
+          {!editMode ? 
+            <button type="button" onClick= { addItem } >Add Item</button> :
+            <button type="button" onClick= { updateItem }>Update Item</button>
+          }   
         </div>
-        <div className="list">
+        <ul>
           {
-            ( list.length === 0 ) ? 
-              <p>No item in the list</p> :
-              list.map(( item, index ) => {
-                return <div className="listItem" key={ Math.random() }>
-                  <div className="completeTodo">
-                    {/* onChange ={completeItem(index)}
-                    to be discussed */}
-                    <input type="checkbox" className="css-checkbox"  id={`checkbox${index+1}`} 
-                      onChange ={() => completeItem(index)}
-                      checked={list[index].isCompleted}/>
-                    <label for={`checkbox${index+1}`} name="checkbox1_lbl" className="css-label lite-green-check"></label>
-                  </div>
-                  <div className="todoDescription" style={list[index].isCompleted ? {textDecoration : 'line-through', textDecorationThickness: '3px'}: {}}>{item.todo}
-                  <a href="#" onClick = {() => editItem(index)}><FaEdit/></a>
-                  <a href="#" onClick = {() => removeItem(index)}><FaRegTrashAlt/></a>
-                  </div>
+            (list.length === 0) ?
+              // No todo view
+            <div>
+              <p className="status free emptylist">
+                <img src="https://nourabusoud.github.io/vue-todo-list/images/beer_celebration.svg" alt="celebration"/>
+                Time to chill!  You have no todos.
+              </p> 
+            </div>  :
+              list.map((item, index) => {
+                return <li className={item.isCompleted ? 'done': ''}>
+                <span className="label">{item.todo}</span>
+                <div className="actions">
+                  {/* Todo status checkbox */}
+                  <button type="button" className="btn-picto"
+                  onClick ={() => completeItem(index)}>
+                    {item.isCompleted ? 
+                      <CheckBoxIcon style={{ color: 'white'}}/> :
+                      <CheckBoxOutlineBlankIcon style={{ color: 'white'}}/>
+                      }
+                  </button>
+                  {/* Todo edit button */}
+                  <button type="button" className="btn-picto"
+                    onClick = {() => editItem(index)}>
+                    <EditIcon style={{ color: 'white'}}/>
+                  </button>
+                  {/* Todo delete button */}
+                  <button type="button" className="btn-picto"
+                    onClick = {() => removeItem(index)}>
+                    <DeleteIcon style={{ color: 'white'}}/>
+                  
+                  </button>
                 </div>
+              </li>
               })
           }
+        </ul>
+       
         </div>
-      </div>
     </div>
   );
 }
