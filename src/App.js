@@ -94,19 +94,19 @@ function App() {
                   <button type="button" className="btn-picto"
                   onClick ={() => completeItem(index)}>
                     {item.isCompleted ? 
-                      <CheckBoxIcon style={{ color: 'white'}}/> :
-                      <CheckBoxOutlineBlankIcon style={{ color: 'white'}}/>
+                      <CheckBoxIcon style={{ color: '#FFF'}}/> :
+                      <CheckBoxOutlineBlankIcon style={{ color: '#FFF'}}/>
                       }
                   </button>
                   {/* Todo edit button */}
                   <button type="button" className="btn-picto"
                     onClick = {() => editItem(index)}>
-                    <EditIcon style={{ color: 'white'}}/>
+                    <EditIcon style={{ color: '#FFF'}}/>
                   </button>
                   {/* Todo delete button */}
                   <button type="button" className="btn-picto"
                     onClick = {() => removeItem(index)}>
-                    <DeleteIcon style={{ color: 'white'}}/>
+                    <DeleteIcon style={{ color: '#FFF'}}/>
                   
                   </button>
                 </div>

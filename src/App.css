@@ -9,7 +9,7 @@ body {
   background: #f7f1f1;
   font-size: 1.1rem;
   font-family: 'Quicksand', sans-serif;
-  height: 100vh;
+  max-height: 100vh;
   width: 100%;
 }
 
@@ -23,8 +23,10 @@ body {
   margin: 4rem auto;
   padding: 2rem 3rem 3rem;
   max-width: 500px;
-  background: #A75377;
+  /* background: #A75377;#558b2f */
+  background: #558b2f;
   color: #FFF;
+  border-radius: 8px;
   box-shadow: -8px 8px 3px 0px rgba(100, 100, 100, .3);
 }
 
@@ -94,8 +96,8 @@ body {
   left: -.5rem;
   display: block;
   width: 0%;
-  height: 1px;
-  background: #FFF;
+  height: 3px;
+  background: #33691e;
   animation: strikeitem .3s ease-out 0s forwards;
 }
 
@@ -127,7 +129,7 @@ body {
 .form button {
   padding: 0 1.3rem;
   border: none;
-  background: #A75377;
+  background: #558b2f;
   color: white;
   text-transform: uppercase;
   font-weight: bold;
@@ -138,7 +140,7 @@ body {
 }
 
 .form button:hover {
-  background: #ad4773;
+  background: #33691e;
 }
 
 .form input,
@@ -148,14 +150,15 @@ body {
 }
 /* Chrome, Firefox, Opera, Safari 10.1+ */
 ::placeholder { 
-  color: #A75377;
+  /* color: #A75377; #558b2f  #00701a*/
+  color: #558b2f;
   opacity: 0.6; 
 }
 /* Internet Explorer 10-11 */
 :-ms-input-placeholder { 
-  color: #A75377;
+  color: #558b2f;
 }
 /* Microsoft Edge */
 ::-ms-input-placeholder { 
-  color: #A75377;
+  color: #558b2f;
 }
