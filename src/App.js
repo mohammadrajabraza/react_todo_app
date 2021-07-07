@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import {TodoForm, Todo, EmptyList} from './components'
-import {
-  connect
-} from 'react-redux'
+import { connect } from 'react-redux'
 
 
 function App({todos}) {
@@ -22,11 +20,7 @@ function App({todos}) {
     setText(todos[index].todo)
     setItemToBeUpdated(todos[index].id)
   }
-
-  
-
-  
-
+  console.log(todos)
   return (
     <div className="App">
       <div className="main-container">
@@ -48,7 +42,7 @@ function App({todos}) {
 }
 
 const mapStateToProps = state => ({
-  todos: state
+  todos: state.todos
 })
 
 const mapDispatchToProps = dispatch => ({})

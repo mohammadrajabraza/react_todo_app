@@ -2,28 +2,35 @@
 const todos = (state = [], action) => {
     switch (action.type) {
         case 'todo/add':
-            return [
-                ...state, 
+            return {
+                ...state,
+                todos: [
+                ...state.todos, 
                 {
                     id : action.payload.id,
                     todo : action.payload.text,
                     isCompleted: false
                 }
-            ]
+            ]}
         case 'todo/toggle':
-            return state.map((item) => 
+            return {
+                ...state,
+                todos: state.todos.map((item) => 
                 item.id === action.payload.id ?
                     {...item, isCompleted: !item.isCompleted} :
                     item
-            )
+            )}
         case 'todo/update':
-            return state.map((item) =>
+            return {
+                ...state,
+                todos: state.todos.map((item) =>
                 item.id === action.payload.id ? 
                     {...item, todo: action.payload.text}:
                     item
-            )
+            )}
         case 'todo/delete':
-            return state.filter((item) => item.id !== action.payload.id)
+            return {
+                ...state, todos: state.todos.filter((item) => item.id !== action.payload.id)}
         default :
             return state
 
