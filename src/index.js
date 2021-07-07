@@ -11,9 +11,11 @@ const initialState = [
       {id: "23456", todo: "Task 3", isCompleted: false},
       {id: "45678", todo: "Task 4", isCompleted: false}
   ]
+
 const store = configureStore({
     reducer: rootReducer,
     preloadedState: initialState
+
   })
 
 ReactDOM.render(
