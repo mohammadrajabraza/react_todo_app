@@ -1,14 +1,11 @@
 import { useState } from 'react'
 import swal from 'sweetalert'
 import './App.css'
-import Todo from './components/Todo'
+import { Todo, EmptyList} from './components'
 import {
   connect
 } from 'react-redux'
-import {
-  addTodo,
-  updateTodo
-} from './actions'
+import { addTodo, updateTodo } from './actions'
 
 
 function App({todos, addTodo, updateTodo}) {
@@ -64,15 +61,8 @@ function App({todos, addTodo, updateTodo}) {
         <ul>
           {
             (todos.length === 0) ?
-            <div>
-              <p className="status free emptylist">
-                <img src="https://nourabusoud.github.io/vue-todo-list/images/beer_celebration.svg" alt="celebration"/>
-                Time to chill!  You have no todos.
-              </p> 
-            </div>  :
-              todos.map((todo, idx) => {
-                return <Todo todo={todo} editItem={editItem} index={idx}/>
-              })
+              <EmptyList/> :
+              todos.map((todo, idx) => <Todo todo={todo} editItem={editItem} index={idx}/>)
           }
         </ul>
        
