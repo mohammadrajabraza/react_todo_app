@@ -29,14 +29,26 @@ const toggleTodo = id => ({
 })
 
 const setText = text => ({
-    type: "text/clear",
+    type: "text/set",
     payload: {
         text
     }
 })
 
 const resetText = () => ({
-    type: "text/set"
+    type: "text/clear"
+})
+
+const showAllTodos = () => ({
+    type: "filter/all"
+})
+
+const showActiveTodos = () => ({
+    type: "filter/active"
+})
+
+const showCompletedTodos = () => ({
+    type: "filter/completed"
 })
 
 export {
@@ -45,5 +57,8 @@ export {
     deleteTodo,
     toggleTodo,
     setText,
-    resetText
+    resetText,
+    showAllTodos,
+    showActiveTodos,
+    showCompletedTodos
 }
