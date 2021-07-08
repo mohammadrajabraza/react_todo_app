@@ -1,11 +1,11 @@
-const text = (text = '', action) => {
+const text = (state = 'a', action) => {
     switch (action) {
         case 'text/clear':
              return ''
         case 'text/set':
-            return action.payload.text
+            return state.concat(action.payload.text)
         default:
-            return ''
+            return state
     }
 } 
 
