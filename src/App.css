@@ -177,3 +177,116 @@ body {
 ::-ms-input-placeholder { 
   color: #558b2f;
 }
+
+
+
+.config-box {
+  width: 160px;
+  float: right;
+}
+/* 3-STATE TOGGLE */
+
+h4.inputLabel {
+  display: inline-block;
+  color: #fff;
+	margin-top: 10px;
+  margin-bottom: 7px;
+  font-size: 0.8em;
+	font-weight: 300;
+}
+
+.rotationTypeContainer {
+  position:relative;
+  border-radius: 4px;
+  height: 36px;
+  border: 1px solid #fff;
+  z-index: 1;
+ 	width: 100%;
+	margin-top: 0px;
+}
+
+
+.rotationType__label p {
+  display:block;
+  margin:0;
+  line-height: 28px;
+  font-size: 14px;
+	font-weight: 500;
+  /* hier svg in? */
+  margin-top: 5px;
+  /* color: white; */
+}
+
+.rotationType__label {
+  position:absolute;
+  z-index: 1;
+}
+
+/* first pos */
+.rotationType__label:nth-of-type(1){
+  text-align:center;
+  left: 0;
+	/* border-right: 1px solid #fff; */
+}
+
+/* center */
+.rotationType__label:nth-of-type(2){
+  text-align:center;
+  width: 33.33333%;
+  left: 33.33333%;
+  margin-left: 0px;
+	/* border-right: 1px solid #fff; */
+}
+
+/* last pos */
+.rotationType__label:nth-of-type(3) {
+  text-align: center;
+  right: 0px;
+  width: 33.33333%;
+}
+
+.rotationTypeContainer input[type=radio]{
+  display: none;
+}
+
+.rotationType__label{
+  width: 33.33333%;
+  height: 35px;
+  margin: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.rotationType__slideBg {
+  width: 33.33333%;
+  height: 34px;
+  /* border: 2px solid #e6797a; */
+  position: absolute;
+  top: 0;
+  border-radius: 0px;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  transition: all .4s ease;
+}
+
+.rotationTypeContainer input:checked ~ p {
+	color: white;
+}
+
+.rotationTypeContainer input:checked ~ .rotationType__slideBg {
+	background: #074b18;
+}
+
+.rotationTypeContainer input:nth-child(1):checked ~ .rotationType__slideBg {
+	left: 0;
+}
+
+.rotationTypeContainer input:nth-child(2):checked ~ .rotationType__slideBg {
+	left: 33.33333%;
+}
+
+.rotationTypeContainer input:nth-child(3):checked ~ .rotationType__slideBg {
+	left: 66.66666%;
+}
