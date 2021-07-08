@@ -1,9 +1,8 @@
 import swal from 'sweetalert'
-import { addTodo, updateTodo } from '../../actions'
+import { addTodo } from '../../actions'
 import { connect } from 'react-redux'
 
-function TodoForm({text, setText, resetText, itemIdToBeUpdated,
-     setItemToBeUpdated, editMode, setEditMode, updateTodo, addTodo}){
+function TodoForm({text, setText, editMode, addTodo, updateItem}){
 
 
     const addItem = () => {
@@ -11,20 +10,11 @@ function TodoForm({text, setText, resetText, itemIdToBeUpdated,
           swal({text: "Field is empty!", icon: "warning"})
         else{
           addTodo(text)
-          resetText()
+          setText('')
         }
     }
 
-    const updateItem = () => {
-        if(itemIdToBeUpdated === -1)
-          swal({ text: "No item is set for update!", icon: "error"})
-        else {
-          updateTodo(itemIdToBeUpdated, text)
-          setItemToBeUpdated(-1)
-          resetText()
-        }
-        setEditMode(false)
-    }
+    
 
     return<> 
         <div className="title">Todo List</div>
@@ -43,8 +33,7 @@ function TodoForm({text, setText, resetText, itemIdToBeUpdated,
 const mapStateToProps = state => ({})
 
 const mapDispatchToProps = dispatch => ({
-    addTodo: text => dispatch(addTodo(text)),
-    updateTodo: (id, text) => dispatch(updateTodo(id, text))
+    addTodo: text => dispatch(addTodo(text))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoForm)
