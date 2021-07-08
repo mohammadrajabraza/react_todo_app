@@ -28,9 +28,22 @@ const toggleTodo = id => ({
     }
 })
 
+const setText = text => ({
+    type: "text/clear",
+    payload: {
+        text
+    }
+})
+
+const resetText = () => ({
+    type: "text/set"
+})
+
 export {
     addTodo,
     updateTodo,
     deleteTodo,
-    toggleTodo
+    toggleTodo,
+    setText,
+    resetText
 }
