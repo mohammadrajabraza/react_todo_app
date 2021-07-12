@@ -1,8 +1,10 @@
-export default function EmptyList() {
+export default function EmptyList({text}) {
+
+    let appendedText = text === ' ' ? '' : ` ${text} `;
     return <div>
                 <p className="status free emptylist">
                     <img src="https://nourabusoud.github.io/vue-todo-list/images/beer_celebration.svg" alt="celebration"/>
-                    Time to chill!  You have no todos.
+                    {`Time to chill!  You have no${appendedText}todos.`}
                 </p> 
             </div>
 }
