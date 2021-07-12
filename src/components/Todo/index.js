@@ -9,7 +9,7 @@ function Todo({item: {id, todo, isCompleted},index, editItem, toggleTodo, delete
 
 
     return (
-        <li key={id} className={isCompleted ? 'done': ''}>
+        <li className={isCompleted ? 'done': ''}>
                 <span className="label">{todo}</span>
                 <div className="actions">
                   {/* Todo status checkbox */}

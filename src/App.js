@@ -30,12 +30,12 @@ function App({todos, visibilityFilter, updateTodo}) {
   }
 
   const todoList = visibilityFilter === 'all' ? 
-          todos.map((todo, idx) => <Todo item={todo} editItem={editItem} index={idx}/>) :
+          todos.map((todo, idx) => <Todo key={todo.id} item={todo} editItem={editItem} index={idx}/>) :
           (visibilityFilter === 'active' ? 
               todos.filter((item) => item.isCompleted === false)
-                .map((todo, idx) => <Todo item={todo} editItem={editItem} index={idx}/>) :
+                .map((todo, idx) => <Todo key={todo.id} item={todo} editItem={editItem} index={idx}/>) :
                    todos.filter((item) => item.isCompleted === true)
-                   .map((todo, idx) => <Todo item={todo} editItem={editItem} index={idx}/>) )
+                   .map((todo, idx) => <Todo key={todo.id} item={todo} editItem={editItem} index={idx}/>) )
 
   return   <div className="App">
             <div className="main-container">
