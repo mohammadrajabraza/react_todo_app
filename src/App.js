@@ -4,6 +4,7 @@ import { updateTodo } from './actions'
 import {TodoForm, Todo, EmptyList, TriStateButton} from './components'
 import { connect } from 'react-redux'
 import swal from 'sweetalert'
+import {CSSTransition, TransitionGroup, SwitchTransition} from 'react-transition-group'
 
 
 function App({todos, visibilityFilter, updateTodo}) {
@@ -30,30 +31,66 @@ function App({todos, visibilityFilter, updateTodo}) {
   }
 
   const todoList = visibilityFilter === 'all' ? 
-          todos.map((todo, idx) => <Todo key={todo.id} item={todo} editItem={editItem} index={idx}/>) :
+          todos.map((todo, idx) => <CSSTransition
+          key={todo.id}
+          timeout={700}
+          classNames="slide"
+        ><Todo item={todo} editItem={editItem} index={idx}/>
+        
+        </CSSTransition>) :
           (visibilityFilter === 'active' ? 
               todos.filter((item) => item.isCompleted === false)
-                .map((todo, idx) => <Todo key={todo.id} item={todo} editItem={editItem} index={idx}/>) :
+                .map((todo, idx) => <CSSTransition
+                key={todo.id}
+                timeout={700}
+                classNames="slide"
+              ><Todo item={todo} editItem={editItem} index={idx}/>
+              
+              </CSSTransition>) :
                    todos.filter((item) => item.isCompleted === true)
-                   .map((todo, idx) => <Todo key={todo.id} item={todo} editItem={editItem} index={idx}/>) )
+                   .map((todo, idx) => <CSSTransition
+                  key={todo.id}
+                   timeout={700}
+                   classNames="slide"
+                 ><Todo item={todo} editItem={editItem} index={idx}/>
+                 
+                 </CSSTransition>) )
 
   return   <div className="App">
             <div className="main-container">
               <TodoForm text={text} setText={setText} editMode={editMode} updateItem={updateItem}/>
+                <SwitchTransition mode="out-in">
                 {
                   todos.length === 0 ?
-                    <EmptyList text=""/>:
-                    <ul>
-                      {
-                        todoList.length === 0 ?
-                          <EmptyList text={visibilityFilter}/>:
-                          todoList
-                        //(todos.length === 0) ?
-                          //<EmptyList/> :
-                          //todos.map((todo, idx) => <Todo todo={todo} editItem={editItem} index={idx}/>)
-                      }
-                    </ul>
+                  <CSSTransition
+                      key={0}
+                      timeout={300}
+                      classNames="fade"
+                    >
+                    <EmptyList text=""/>
+                    </CSSTransition>
+                    :
+                    <CSSTransition
+                      key={1}
+                      timeout={300}
+                      classNames="fade"
+                    >
+                      <ul>
+                      <TransitionGroup>
+                        {
+                          todoList.length === 0 ?
+                            <EmptyList text={visibilityFilter}/>:
+                            todoList
+                          //(todos.length === 0) ?
+                            //<EmptyList/> :
+                            //todos.map((todo, idx) => <Todo todo={todo} editItem={editItem} index={idx}/>)
+                        }
+                        </TransitionGroup>
+                      </ul>
+                      </CSSTransition>
+                      
                 }
+              </SwitchTransition>
               <TriStateButton/>
             
             </div>
