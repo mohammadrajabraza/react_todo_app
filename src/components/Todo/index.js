@@ -5,7 +5,7 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit';
 
-function Todo({todo: {id, todo, isCompleted},index, editItem, toggleTodo, deleteTodo}) {
+function Todo({item: {id, todo, isCompleted},index, editItem, toggleTodo, deleteTodo}) {
 
 
     return (

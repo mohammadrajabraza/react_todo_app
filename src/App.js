@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import swal from 'sweetalert'
 
 
-function App({todos, filter, updateTodo}) {
+function App({todos, visibilityFilter, updateTodo}) {
   const [text, setText] = useState('')
   const [editMode, setEditMode] = useState(false)
   const [itemIdToBeUpdated, setItemToBeUpdated] = useState(-1)
@@ -23,33 +23,47 @@ function App({todos, filter, updateTodo}) {
     setEditMode(false)
   }
 
-  const editItem = (index) => {
+  const editItem = (idx) => {
     setEditMode(true)
-    setText(todos[index].todo)
-    setItemToBeUpdated(todos[index].id)
+    setText(todos[idx].todo)
+    setItemToBeUpdated(todos[idx].id)
   }
-  // console.log(todos)
-  return (
-    <div className="App">
-      <div className="main-container">
-      <TodoForm text={text} setText={setText} editMode={editMode} updateItem={updateItem}/>
-        <ul>
-          {
-            (todos.length === 0) ?
-              <EmptyList/> :
-              todos.map((todo, idx) => <Todo todo={todo} editItem={editItem} index={idx}/>)
-          }
-        </ul>
-          <TriStateButton/>
-       
+
+  const todoList = visibilityFilter === 'all' ? 
+          todos.map((todo, idx) => <Todo item={todo} editItem={editItem} index={idx}/>) :
+          (visibilityFilter === 'active' ? 
+              todos.filter((item) => item.isCompleted === false)
+                .map((todo, idx) => <Todo item={todo} editItem={editItem} index={idx}/>) :
+                   todos.filter((item) => item.isCompleted === true)
+                   .map((todo, idx) => <Todo item={todo} editItem={editItem} index={idx}/>) )
+
+  return   <div className="App">
+            <div className="main-container">
+              <TodoForm text={text} setText={setText} editMode={editMode} updateItem={updateItem}/>
+                {
+                  todos.length === 0 ?
+                    <EmptyList text=""/>:
+                    <ul>
+                      {
+                        todoList.length === 0 ?
+                          <EmptyList text={visibilityFilter}/>:
+                          todoList
+                        //(todos.length === 0) ?
+                          //<EmptyList/> :
+                          //todos.map((todo, idx) => <Todo todo={todo} editItem={editItem} index={idx}/>)
+                      }
+                    </ul>
+                }
+              <TriStateButton/>
+            
+            </div>
         </div>
-    </div>
-  );
+  
 }
 
 const mapStateToProps = state => ({
   todos: state.todos,
-  filter: state.filters.status
+  visibilityFilter: state.filters.status
 })
 
 const mapDispatchToProps = dispatch => ({
