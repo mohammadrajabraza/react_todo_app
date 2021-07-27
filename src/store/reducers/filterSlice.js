@@ -1,24 +1,15 @@
-const filter = (state = {}, action) => {
-    switch (action.type) {
-        case 'filter/all':
-            return {
-                ...state, 
-                status: 'all'
-                }     
-        case 'filter/active':
-            return {
-                ...state, 
-                status: 'active'
-                }
-        case 'filter/completed':
-            return {
-                ...state, 
-                status: 'completed'
-                }
-        default :
-            return state
+import { createReducer } from "@reduxjs/toolkit"
 
-    }
-}
-
+const filter = createReducer([], (builder) => {
+    builder
+        .addCase('filter/all', (state) =>{
+            state.status = 'all'
+        })
+        .addCase('filter/active', (state) =>{
+            state.status = 'active'
+        })
+        .addCase('filter/completed', (state) =>{
+            state.status = 'completed'
+        })
+})
 export default filter
