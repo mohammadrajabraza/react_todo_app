@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {showAllTodos, showActiveTodos, showCompletedTodos} from '../../actions'
+import {showAllTodos, showActiveTodos, showCompletedTodos} from '../../store/actions'
 function TriStateButton({filter, showAllTodos, showActiveTodos, showCompletedTodos}) {
 
     return  <div className="config-box" id="configBox">

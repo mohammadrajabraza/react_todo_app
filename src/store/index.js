@@ -1,4 +1,4 @@
-import {textSlice, todoSlice, filterSlice} from '../reducers'
+import {textSlice, todoSlice, filterSlice} from './reducers'
 import {configureStore, combineReducers} from '@reduxjs/toolkit'
 import {persistStore, persistReducer} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'

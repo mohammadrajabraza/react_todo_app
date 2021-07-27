@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { updateTodo } from './actions'
+import { updateTodo } from './store/actions'
 import {TodoForm, Todo, EmptyList, TriStateButton} from './components'
 import { connect } from 'react-redux'
 import swal from 'sweetalert'

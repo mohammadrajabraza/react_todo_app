@@ -1,4 +1,4 @@
-import { deleteTodo, toggleTodo } from '../../actions';
+import { deleteTodo, toggleTodo } from '../../store/actions';
 import { connect } from 'react-redux';
 import CheckBoxIcon from '@material-ui/icons/CheckBox'
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank'
