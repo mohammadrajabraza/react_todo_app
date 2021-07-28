@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import './App.css'
 import { updateTodo } from './store/actions'
-import {TodoForm, Todo, EmptyList, TriStateButton} from './components'
+import { Header, TodoForm, Todo, EmptyList, TriStateButton} from './components'
 import { connect } from 'react-redux'
 import swal from 'sweetalert'
 import {CSSTransition, TransitionGroup, SwitchTransition} from 'react-transition-group'
@@ -61,7 +61,8 @@ function App({todos, visibilityFilter, updateTodo}) {
                  </CSSTransition>) )
 
   return   <div className="App">
-            <div className="main-container">
+            <Header/>
+            <div className="list-container">
                 {memoizedForm}
                 <SwitchTransition mode="out-in">
                 {
