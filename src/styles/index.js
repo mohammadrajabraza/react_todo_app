@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     authContainer: {
-      marginTop: "8%"
+      marginTop: "6%"
     },
     authPaperWrapper: {
       padding: theme.spacing(4),
@@ -24,7 +24,10 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
       margin: theme.spacing(3, 0, 2),
-      background: "#558b2f"
+      background: "#558b2f",
+      '&:hover': {
+        background: "#33691e"
+      }
     },
   }));
   export default useStyles
