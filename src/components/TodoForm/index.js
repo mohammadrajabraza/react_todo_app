@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 function TodoForm({text, setText, editMode, addTodo, updateItem}){
 
-
     const addItem = () => {
         if(text === '')
           swal({text: "Field is empty!", icon: "warning"})
@@ -13,8 +12,6 @@ function TodoForm({text, setText, editMode, addTodo, updateItem}){
           setText('')
         }
     }
-
-    
 
     return<> 
         <div className="title">Todo List</div>
