@@ -2,9 +2,15 @@ import { useState, useMemo } from 'react'
 import './App.css'
 import { updateTodo } from './store/actions'
 import { Header, TodoForm, Todo, EmptyList, TriStateButton} from './components'
+import { SignUp, Login } from './views'
 import { connect } from 'react-redux'
 import swal from 'sweetalert'
 import {CSSTransition, TransitionGroup, SwitchTransition} from 'react-transition-group'
+import {
+  Grid
+} from "@material-ui/core";
+import { Route, Switch } from 'react-router-dom'
+
 
 function App({todos, visibilityFilter, updateTodo}) {
   const [text, setText] = useState('')
@@ -61,42 +67,57 @@ function App({todos, visibilityFilter, updateTodo}) {
                  </CSSTransition>) )
 
   return   <div className="App">
-            <Header/>
-            <div className="list-container">
-                {memoizedForm}
-                <SwitchTransition mode="out-in">
-                {
-                  todos.length === 0 ?
-                  <CSSTransition
-                      key={0}
-                      timeout={300}
-                      classNames="fade"
-                    >
-                    <EmptyList text=""/>
-                    </CSSTransition>
-                    :
-                    <CSSTransition
-                      key={1}
-                      timeout={300}
-                      classNames="fade"
-                    >
-                      <ul>
-                      <TransitionGroup>
-                        {
-                          todoList.length === 0 ?
-                            <EmptyList text={visibilityFilter}/>:
-                            todoList
-                        }
-                        </TransitionGroup>
-                      </ul>
-                      </CSSTransition>
-                      
-                }
-              </SwitchTransition>
-              <TriStateButton/>
-            
+              <Header/>
+              <Grid container spacing={3} direction="column"
+  justifyContent="center"
+  alignItems="center">
+                <Switch>
+                  <Route path="/login">
+                    <Login/>
+                  </Route>
+                  <Route path="/signup">
+                    <SignUp/>
+                  </Route>
+                  <Route exact path="/">
+                    <div className="list-container">
+                      {memoizedForm}
+                      <SwitchTransition mode="out-in">
+                      {
+                        todos.length === 0 ?
+                        <CSSTransition
+                            key={0}
+                            timeout={300}
+                            classNames="fade"
+                          >
+                          <EmptyList text=""/>
+                          </CSSTransition>
+                          :
+                          <CSSTransition
+                            key={1}
+                            timeout={300}
+                            classNames="fade"
+                          >
+                            <ul>
+                            <TransitionGroup>
+                              {
+                                todoList.length === 0 ?
+                                  <EmptyList text={visibilityFilter}/>:
+                                  todoList
+                              }
+                              </TransitionGroup>
+                            </ul>
+                            </CSSTransition>
+                            
+                      }
+                    </SwitchTransition>
+                    <TriStateButton/>
+                  
+                  </div>
+                
+                  </Route>
+                </Switch>
+              </Grid>
             </div>
-        </div>
   
 }
 

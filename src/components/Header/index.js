@@ -3,8 +3,9 @@ import {
   Button,
   Toolbar,
   Typography,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+} from "@material-ui/core"
+import { makeStyles } from "@material-ui/core/styles"
+import { useHistory, Link } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,18 +20,22 @@ const useStyles = makeStyles((theme) => ({
     title: {
       flexGrow: 1,
     },
-  }));
+  }))
 
 const Header = () => {
-    const classes = useStyles();
+    const classes = useStyles()
+    const history = useHistory()
   return (
     <div>
       <AppBar position="static" className={classes.header}>
             <Toolbar>
             <Typography variant="h4" className={classes.title}>
-                Todo List
+                <Link to="/">
+                  Todo List
+                </Link>
             </Typography>
-            <Button variant="outlined" color="inherit">Login</Button>
+            <Button variant="outlined" color="inherit" 
+            onClick={() => history.push('/login')}>Login</Button>
         </Toolbar>
       </AppBar>
     </div>

@@ -3,6 +3,7 @@ import { Avatar, Button, Container, CssBaseline,
   Grid, Link, Paper, TextField, Typography } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import useStyles from '../../styles'
+import {Link as RouterLink} from 'react-router-dom'
 
 export default function SignUp() {
   const classes = useStyles();
@@ -78,9 +79,11 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link>
+              <RouterLink to="/login">
+                <Link href="#" variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </RouterLink>
             </Grid>
           </Grid>
         </form>
