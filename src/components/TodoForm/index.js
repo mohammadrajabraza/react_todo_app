@@ -1,9 +1,8 @@
 import swal from 'sweetalert'
-import { addTodo } from '../../actions'
+import { addTodo } from '../../store/actions'
 import { connect } from 'react-redux'
 
 function TodoForm({text, setText, editMode, addTodo, updateItem}){
-
 
     const addItem = () => {
         if(text === '')
@@ -13,8 +12,6 @@ function TodoForm({text, setText, editMode, addTodo, updateItem}){
           setText('')
         }
     }
-
-    
 
     return<> 
         <div className="title">Todo List</div>

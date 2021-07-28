@@ -1,11 +1,10 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import './App.css'
-import { updateTodo } from './actions'
+import { updateTodo } from './store/actions'
 import {TodoForm, Todo, EmptyList, TriStateButton} from './components'
 import { connect } from 'react-redux'
 import swal from 'sweetalert'
 import {CSSTransition, TransitionGroup, SwitchTransition} from 'react-transition-group'
-
 
 function App({todos, visibilityFilter, updateTodo}) {
   const [text, setText] = useState('')
@@ -29,6 +28,11 @@ function App({todos, visibilityFilter, updateTodo}) {
     setText(todos[idx].todo)
     setItemToBeUpdated(todos[idx].id)
   }
+
+  const memoizedForm = useMemo(() => {
+    return <TodoForm text={text} setText={setText} editMode={editMode} updateItem={updateItem}/>
+  // eslint-disable-next-line
+  }, [text, editMode])
 
   const todoList = visibilityFilter === 'all' ? 
           todos.map((todo, idx) => <CSSTransition
@@ -58,7 +62,7 @@ function App({todos, visibilityFilter, updateTodo}) {
 
   return   <div className="App">
             <div className="main-container">
-              <TodoForm text={text} setText={setText} editMode={editMode} updateItem={updateItem}/>
+                {memoizedForm}
                 <SwitchTransition mode="out-in">
                 {
                   todos.length === 0 ?
@@ -81,9 +85,6 @@ function App({todos, visibilityFilter, updateTodo}) {
                           todoList.length === 0 ?
                             <EmptyList text={visibilityFilter}/>:
                             todoList
-                          //(todos.length === 0) ?
-                            //<EmptyList/> :
-                            //todos.map((todo, idx) => <Todo todo={todo} editItem={editItem} index={idx}/>)
                         }
                         </TransitionGroup>
                       </ul>
