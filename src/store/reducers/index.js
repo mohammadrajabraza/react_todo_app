@@ -3,7 +3,7 @@ import todoSlice from './todoSlice'
 import filterSlice from './filterSlice'
 
 export {
-    textSlice,
-    todoSlice,
-    filterSlice
+  textSlice,
+  todoSlice,
+  filterSlice
 }
