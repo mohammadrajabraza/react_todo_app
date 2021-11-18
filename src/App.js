@@ -67,7 +67,7 @@ function App ({ todos, visibilityFilter, updateTodo }) {
   return (
     <div className='App'>
       <Header />
-      <div className='list-container'>
+      <div className='main-container'>
         {memoizedForm}
         <SwitchTransition mode='out-in'>
           {
