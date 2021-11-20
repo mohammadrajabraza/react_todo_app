@@ -5,7 +5,16 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 
-function Todo ({ item: { id, todo, isCompleted }, index, editItem, toggleTodo, deleteTodo }) {
+function Todo (props) {
+  const {
+    item: { id, todo, isCompleted },
+    index,
+    editItem,
+    itemIdToBeUpdated,
+    toggleTodo,
+    deleteTodo
+  } = props
+
   return (
     <li className={isCompleted ? 'done' : ''}>
       <span className='label'>{todo}</span>
@@ -25,8 +34,10 @@ function Todo ({ item: { id, todo, isCompleted }, index, editItem, toggleTodo, d
         </button>
         {/* Todo delete button */}
         <button
-          type='button' className='btn-picto'
+          type='button'
+          className='btn-picto'
           onClick={() => deleteTodo(id)}
+          disabled={id === itemIdToBeUpdated}
         >
           <DeleteIcon style={{ color: '#FFF' }} />
 

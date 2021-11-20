@@ -40,7 +40,12 @@ function App ({ todos, visibilityFilter, updateTodo }) {
         timeout={700}
         classNames='slide'
       >
-        <Todo item={todo} editItem={editItem} index={idx} />
+        <Todo
+          item={todo}
+          editItem={editItem}
+          index={idx}
+          itemIdToBeUpdated={itemIdToBeUpdated}
+        />
       </CSSTransition>
       )
     : (visibilityFilter === 'active'
@@ -71,31 +76,31 @@ function App ({ todos, visibilityFilter, updateTodo }) {
         {memoizedForm}
         <SwitchTransition mode='out-in'>
           {
-                  todos.length === 0
-                    ? <CSSTransition
-                        key={0}
-                        timeout={300}
-                        classNames='fade'
-                      >
-                      <EmptyList text='' />
-                      </CSSTransition>
-                    : <CSSTransition
-                        key={1}
-                        timeout={300}
-                        classNames='fade'
-                      >
-                      <ul>
-                        <TransitionGroup>
-                          {
-                          todoList.length === 0
-                            ? <EmptyList text={visibilityFilter} />
-                            : todoList
-                        }
-                        </TransitionGroup>
-                      </ul>
-                    </CSSTransition>
+            todos.length === 0
+              ? <CSSTransition
+                  key={0}
+                  timeout={300}
+                  classNames='fade'
+                >
+                <EmptyList text='' />
+              </CSSTransition>
+              : <CSSTransition
+                  key={1}
+                  timeout={300}
+                  classNames='fade'
+                >
+                <ul>
+                  <TransitionGroup>
+                    {
+                    todoList.length === 0
+                      ? <EmptyList text={visibilityFilter} />
+                      : todoList
+                  }
+                  </TransitionGroup>
+                </ul>
+                </CSSTransition>
 
-                }
+          }
         </SwitchTransition>
         <TriStateButton />
 
