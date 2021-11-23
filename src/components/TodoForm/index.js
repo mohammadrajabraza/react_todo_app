@@ -10,6 +10,13 @@ function TodoForm ({ text, setText, editMode, addTodo, updateItem }) {
     }
   }
 
+  const handleKeyPress = (e) => {
+    if (!(e.which === 13 || e.keyCode === 13)) return
+
+    addTodo(text)
+    setText('')
+  }
+
   return (
     <>
       <div className='title'>Todo List</div>
@@ -17,6 +24,7 @@ function TodoForm ({ text, setText, editMode, addTodo, updateItem }) {
         <input
           type='text' placeholder='Enter todo here'
           onChange={e => setText(e.target.value)}
+          onKeyPress={handleKeyPress}
           value={text}
         />
         {!editMode
