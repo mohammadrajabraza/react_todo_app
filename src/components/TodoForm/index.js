@@ -1,6 +1,7 @@
 import swal from 'sweetalert'
 import { addTodo } from '../../store/actions'
 import { connect } from 'react-redux'
+import CustomButton from '../CustomButton'
 
 function TodoForm ({ text, setText, editMode, addTodo, updateItem }) {
   const addItem = () => {
@@ -19,9 +20,11 @@ function TodoForm ({ text, setText, editMode, addTodo, updateItem }) {
           onChange={e => setText(e.target.value)}
           value={text}
         />
-        {!editMode
-          ? <button type='button' onClick={addItem}>Add Item</button>
-          : <button type='button' onClick={updateItem}>Update Item</button>}
+        {
+          !editMode
+            ? <CustomButton handleClick={addItem}>Add Item</CustomButton>
+            : <CustomButton handleClick={updateItem}>Update Item</CustomButton>
+        }
       </div>
     </>
   )
